@@ -89,9 +89,9 @@ namespace MondidoSDK.Api
         public object WebHooks { get; set; }
 
 
-        public static Transaction Create(Dictionary<string, string> data)
+        public static Transaction Create(List<KeyValuePair<string, string>> data)
         {
-            return new Transaction();
+            return HttpPost("/transactions",data).Result.FromJson<Transaction>();
         }
 
         public static Transaction Get(int id)

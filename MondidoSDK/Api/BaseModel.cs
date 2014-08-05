@@ -79,7 +79,7 @@ namespace MondidoSDK.Api
             return data;
         }
 
-        public static async Task<string> HttpPost(string url)
+        public static async Task<string> HttpPost(string url, List<KeyValuePair<string, string>> postData)
         {
             string data;
             var credentials = new NetworkCredential(ApiUsername, ApiPassword);
@@ -87,7 +87,8 @@ namespace MondidoSDK.Api
             using (var client = new HttpClient(handler))
             {
                 client.BaseAddress = new Uri(ApiBaseUrl);
-                HttpContent content = new StringContent("");
+
+                HttpContent content = new FormUrlEncodedContent(postData);
                 HttpResponseMessage response = await client.PostAsync(ApiBaseUrl + url,content);
                 data = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
@@ -98,9 +99,6 @@ namespace MondidoSDK.Api
             return data;
         }
 
-        public async void POST(object data, string url)
-        {
-        }
 
       
     
