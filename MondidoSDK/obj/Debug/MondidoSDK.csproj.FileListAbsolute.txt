@@ -1,0 +1,7 @@
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\MondidoSDK.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\MondidoSDK.pdb
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Newtonsoft.Json.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Newtonsoft.Json.xml
+C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\MondidoSDK.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\MondidoSDK.pdb
+C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\MondidoSDK.csprojResolveAssemblyReference.cache

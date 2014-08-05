@@ -1,0 +1,10 @@
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\Mondido-Test.dll.config
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\Mondido-Test.dll
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\Mondido-Test.pdb
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\MondidoSDK.dll
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\Newtonsoft.Json.dll
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\MondidoSDK.pdb
+C:\work\mondido\MondidoSDK\Mondido-Test\bin\Debug\Newtonsoft.Json.xml
+C:\work\mondido\MondidoSDK\Mondido-Test\obj\Debug\Mondido-Test.csprojResolveAssemblyReference.cache
+C:\work\mondido\MondidoSDK\Mondido-Test\obj\Debug\Mondido-Test.dll
+C:\work\mondido\MondidoSDK\Mondido-Test\obj\Debug\Mondido-Test.pdb
