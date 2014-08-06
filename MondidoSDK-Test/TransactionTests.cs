@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MondidoSDK.Api;
 using MondidoSDK.Configuration;
 using MondidoSDK.Utils;
 
 namespace MondidoSDK_Test
 {
     [TestClass]
-    public class TransactionTests
+    public class TransactionTests : TestBase
     {
+        [ClassInitialize()]
+        public static void MyClassInitialize(TestContext testContext)
+        {
+            TestBase.MyClassInitialize(testContext);
+        }
+
+
         [TestMethod]
         public void TestGet()
         {
-            var transaction = MondidoSDK.Api.Transaction.Get(443);
-            Assert.IsTrue(443==transaction.Id);
+            var transaction = Transaction.Get(1);
+            Assert.AreEqual(1, transaction.Id);
         }
 
         [TestMethod]
@@ -45,6 +54,12 @@ namespace MondidoSDK_Test
 
             var transaction = MondidoSDK.Api.Transaction.Create(postData);
             Assert.IsTrue(transaction.PaymentRef == payment_ref);
+        }
+
+        [ClassCleanup()]
+        public static void MyClassCleanup()
+        {
+            TestBase.MyClassCleanup();
         }
 
     }

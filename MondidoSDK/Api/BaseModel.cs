@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MondidoSDK.Exceptions;
+using Newtonsoft.Json;
 
 namespace MondidoSDK.Api
 {
@@ -60,16 +61,26 @@ namespace MondidoSDK.Api
         public static async Task<string> HttpGet(string url)
         {
             string data;
-            var credentials = new NetworkCredential(ApiUsername, ApiPassword);
-            var handler = new HttpClientHandler { Credentials = credentials };
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(GetHandler()))
             {
                 client.BaseAddress = new Uri(ApiBaseUrl);
-//                client.DefaultRequestHeaders.Accept.Clear();
-//                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                // New code:
                 HttpResponseMessage response = await client.GetAsync(ApiBaseUrl+url);
+                data = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new ApiException(data);
+                }
+            }
+            return data;
+        }
+
+        public static async Task<string> HttpDelete(string url)
+        {
+            string data;
+            using (var client = new HttpClient(GetHandler()))
+            {
+                client.BaseAddress = new Uri(ApiBaseUrl);
+                HttpResponseMessage response = await client.DeleteAsync(ApiBaseUrl + url);
                 data = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
@@ -82,9 +93,7 @@ namespace MondidoSDK.Api
         public static async Task<string> HttpPost(string url, List<KeyValuePair<string, string>> postData)
         {
             string data;
-            var credentials = new NetworkCredential(ApiUsername, ApiPassword);
-            var handler = new HttpClientHandler { Credentials = credentials };
-            using (var client = new HttpClient(handler))
+            using (var client = new HttpClient(GetHandler()))
             {
                 client.BaseAddress = new Uri(ApiBaseUrl);
 
@@ -99,7 +108,21 @@ namespace MondidoSDK.Api
             return data;
         }
 
+        public static HttpMessageHandler GetHandler()
+        {
+            if (MessageHandlerProvider.Handler == null)
+            {
+                var credentials = new NetworkCredential(ApiUsername, ApiPassword);
+                var handler = new HttpClientHandler { Credentials = credentials };
+                return handler;
+            }
+            return MessageHandlerProvider.Handler;
+        }
 
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
       
     
     }

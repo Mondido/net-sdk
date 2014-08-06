@@ -51,6 +51,7 @@
     <Compile Include="Api\Refund.cs" />
     <Compile Include="Api\StoredCard.cs" />
     <Compile Include="Api\Transaction.cs" />
+    <Compile Include="Configuration\MessageHandlerProvider.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Request\Webhook.cs" />

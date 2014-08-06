@@ -22,10 +22,10 @@ namespace MondidoSDK.Utils
             byte[] hash = md5.ComputeHash(inputBytes);
 
             // step 2, convert byte array to hex string
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
+            var sb = new StringBuilder();
+            foreach (byte t in hash)
             {
-                sb.Append(hash[i].ToString("x2"));
+                sb.Append(t.ToString("x2"));
             }
             return sb.ToString();
         }

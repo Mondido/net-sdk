@@ -20,3 +20,7 @@ C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\Newtonsoft.Json.xml
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\obj\Debug\MondidoSDK-Test.csprojResolveAssemblyReference.cache
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\obj\Debug\MondidoSDK-Test.dll
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\obj\Debug\MondidoSDK-Test.pdb
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Net.Http.Formatting.dll
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Web.Http.dll
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Net.Http.Formatting.xml
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Web.Http.xml
