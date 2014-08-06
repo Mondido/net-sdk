@@ -61,6 +61,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RefundTest.cs" />
+    <Compile Include="RefundsController.cs" />
     <Compile Include="Stored_CardsController.cs" />
     <Compile Include="JsonNetFormatter.cs" />
     <Compile Include="TestBase.cs" />
