@@ -1,0 +1,8 @@
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Mondido.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Mondido.pdb
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\BouncyCastle.Crypto.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Newtonsoft.Json.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\BouncyCastle.Crypto.pdb
+C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Newtonsoft.Json.xml
+C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\Mondido.dll
+C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\Mondido.pdb
