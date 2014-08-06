@@ -34,7 +34,15 @@ namespace MondidoSDK.Configuration
             {
                 return ConfigurationSettings.AppSettings["ApiSecret"];
             }
+        }
+
+        public static string RSAKey
+        {
+            get
+            {
+                return ConfigurationSettings.AppSettings["RSAKey"];
+            }
         }    
-    
+
     }
 }

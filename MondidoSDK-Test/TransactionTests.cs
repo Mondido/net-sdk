@@ -44,18 +44,20 @@ namespace MondidoSDK_Test
         {
             var payment_ref = DateTimeOffset.Now.Ticks.ToString();
             List<KeyValuePair<string, string>> postData = new List<KeyValuePair<string, string>>();
+            var encryptedCard = "4111111111111111".RSAEncrypt();
+
             postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
             postData.Add(new KeyValuePair<string, string>("payment_ref", payment_ref));
             postData.Add(new KeyValuePair<string, string>("card_expiry", "0116"));
             postData.Add(new KeyValuePair<string, string>("card_holder", ".net sdk"));
             postData.Add(new KeyValuePair<string, string>("test", "true"));
             postData.Add(new KeyValuePair<string, string>("card_cvv", "200"));
-            postData.Add(new KeyValuePair<string, string>("card_number", "4012888888881881"));
+            postData.Add(new KeyValuePair<string, string>("card_number", encryptedCard));
             postData.Add(new KeyValuePair<string, string>("card_type", "VISA"));
             postData.Add(new KeyValuePair<string, string>("currency", "sek"));
             postData.Add(new KeyValuePair<string, string>("locale", "en"));
             postData.Add(new KeyValuePair<string, string>("hash", (Settings.ApiUsername + payment_ref + "10.00" + "sek" + Settings.ApiSecret).ToMD5()));
-
+            postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
             var transaction = MondidoSDK.Api.Transaction.Create(postData);
             Assert.IsTrue(transaction.PaymentRef == payment_ref);

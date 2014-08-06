@@ -53,14 +53,17 @@ namespace MondidoSDK_Test
         {
             var refdata = DateTimeOffset.Now.Ticks.ToString();
             var postData = new List<KeyValuePair<string, string>>();
+            var encryptedCard = "4111111111111111".RSAEncrypt();
+
             postData.Add(new KeyValuePair<string, string>("card_expiry", "0116"));
             postData.Add(new KeyValuePair<string, string>("card_holder", refdata));
             postData.Add(new KeyValuePair<string, string>("test", "true"));
             postData.Add(new KeyValuePair<string, string>("card_cvv", "200"));
-            postData.Add(new KeyValuePair<string, string>("card_number", "4012888888881881"));
+            postData.Add(new KeyValuePair<string, string>("card_number", encryptedCard));
             postData.Add(new KeyValuePair<string, string>("card_type", "VISA"));
             postData.Add(new KeyValuePair<string, string>("currency", "sek"));
             postData.Add(new KeyValuePair<string, string>("locale", "en"));
+            postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
             var res = MondidoSDK.Api.StoredCard.Create(postData);
             Assert.IsTrue(res.CardHolder == refdata);

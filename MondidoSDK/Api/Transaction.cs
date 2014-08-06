@@ -88,6 +88,9 @@ namespace MondidoSDK.Api
         [JsonProperty(PropertyName = "webhooks")]
         public object WebHooks { get; set; }
 
+        [JsonProperty(PropertyName = "encrypted")]
+        public string Encrypted { get; set; }
+
 
         public static Transaction Create(List<KeyValuePair<string, string>> data)
         {

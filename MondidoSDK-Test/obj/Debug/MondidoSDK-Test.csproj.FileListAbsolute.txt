@@ -24,3 +24,5 @@ C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Net.Http.Formatting.
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Web.Http.dll
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Net.Http.Formatting.xml
 C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\System.Web.Http.xml
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\BouncyCastle.Crypto.dll
+C:\work\mondido\MondidoSDK\MondidoSDK-Test\bin\Debug\BouncyCastle.Crypto.pdb

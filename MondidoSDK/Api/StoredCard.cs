@@ -11,7 +11,6 @@ namespace MondidoSDK.Api
 {
     public class StoredCard : BaseModel
     {
-
         [JsonProperty(PropertyName = "card_holder")]
         public string CardHolder { get; set; }
 

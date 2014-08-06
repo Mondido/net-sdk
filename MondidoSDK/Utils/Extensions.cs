@@ -1,9 +1,17 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web.Script.Serialization;
+using MondidoSDK.Configuration;
+using MondidoSDK.Utils.Security;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.OpenSsl;
+using Org.BouncyCastle.Security;
 
 namespace MondidoSDK.Utils
 {
@@ -29,5 +37,14 @@ namespace MondidoSDK.Utils
             }
             return sb.ToString();
         }
+
+        public static string RSAEncrypt(this string s)
+        {
+            const int keySize = 2048;
+            var key = AsymmetricEncryption.PemToXml(Settings.RSAKey);
+            var base64Card = Convert.ToBase64String(Encoding.UTF8.GetBytes(s));
+            return AsymmetricEncryption.EncryptText(base64Card, keySize, key);
+        }
+
     }
 }
