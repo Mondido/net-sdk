@@ -10,13 +10,13 @@ Open the included unit tests and see how it works.
 
 Example:
 //get one transaction   
-var transaction = Transaction.Get(1);
+```var transaction = Transaction.Get(1);```   
 
-//get three, from the top
-var transactions = Transaction.List(3,0);
+//get three, from the top   
+```var transactions = Transaction.List(3,0);```   
 
-//create a payment using encrypted card number
-var payment_ref = DateTimeOffset.Now.Ticks.ToString();
+//create a payment using encrypted card number   
+```var payment_ref = DateTimeOffset.Now.Ticks.ToString();
 var postData = new List<KeyValuePair<string, string>>();
 var encryptedCard = "4111111111111111".RSAEncrypt();
 
@@ -33,4 +33,6 @@ postData.Add(new KeyValuePair<string, string>("locale", "en"));
 postData.Add(new KeyValuePair<string, string>("hash", (Settings.ApiUsername + payment_ref + "10.00" + "sek" + Settings.ApiSecret).ToMD5()));
 postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
-var transaction = Transaction.Create(postData);
+var transaction = Transaction.Create(postData);```
+
+Read more at https://mondido.com/documentation
