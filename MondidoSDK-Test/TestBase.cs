@@ -45,7 +45,7 @@ namespace MondidoSDK_Test
         {
             if (_server != null)
             {
-                _server.Dispose();
+            //    _server.Dispose();
             }
 
         }

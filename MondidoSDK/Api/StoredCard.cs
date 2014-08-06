@@ -57,7 +57,10 @@ namespace MondidoSDK.Api
         public string Encrypted { get; set; }
 
         [JsonProperty(PropertyName = "test")]
-        public bool test { get; set; }
+        public bool Test { get; set; }
+
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; set; }
 
         public static StoredCard Create(List<KeyValuePair<string, string>> data)
         {

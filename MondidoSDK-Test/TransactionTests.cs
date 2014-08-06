@@ -19,6 +19,11 @@ namespace MondidoSDK_Test
             TestBase.MyClassInitialize(testContext);
         }
 
+        [TestInitialize()]
+        public void Init()
+        {
+            TestBase.MyClassInitialize(null);
+        }
 
         [TestMethod]
         public void TestGet()

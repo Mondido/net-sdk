@@ -11,25 +11,21 @@ using Newtonsoft.Json.Linq;
 
 namespace MondidoSDK_Test
 {
-    public class TransactionsController : ApiController
+    public class Stored_CardsController : ApiController
     {
-        public MondidoSDK.Api.Transaction TestTransaction
+        public MondidoSDK.Api.StoredCard TestCard
         {
             get
             {
-                return new Transaction()
+                return new StoredCard()
                 {
                     Id = 1,
-                    Amount = "10.00",
                     CardCVV = "200",
                     CardHolder = ".net sdk",
                     CardNumber = "411111******1111",
                     CardType = "VISA",
-                    Cost = new { fixed_fee = "2.5", percentual_exchange_fee = "0.035", percentual_fee = "0.025", total = "2.8"},
                     CreatedAt = DateTime.UtcNow,
                     Currency = "eur",
-                    TemplateId = 1,
-                    PaymentRef = "123",
                     Status = "complete",
                     Test = true
                 };
@@ -38,12 +34,11 @@ namespace MondidoSDK_Test
         public object Post()
         {
             dynamic obj =  Request.Content.ReadAsAsync<JObject>().Result;
-            var transaction = TestTransaction;
-            transaction.Amount = obj.amount;
-            transaction.PaymentRef = obj.payment_ref;
-            transaction.CardCVV = obj.card_cvv;
+            var sc = TestCard;
+            sc.CardHolder = obj.card_holder;
+            sc.CardCVV = obj.card_cvv;
 
-            return transaction;
+            return sc;
         }
 
         public object Get()
@@ -53,10 +48,10 @@ namespace MondidoSDK_Test
 
             if (limit.Any() && offset.Any())
             {
-                var list = new List<Transaction>();
+                var list = new List<StoredCard>();
                 for (var i = 0; i < int.Parse(limit); i++)
                 {
-                    list.Add(TestTransaction);
+                    list.Add(TestCard);
                 }
                 return list;
             }
@@ -65,8 +60,15 @@ namespace MondidoSDK_Test
 
         public object Get(int id)
         {
-            var trans = TestTransaction;
+            var trans = TestCard;
             trans.Id = id;
+            return trans;
+        }
+
+        public object Delete(int id)
+        {
+            var trans = TestCard;
+            trans.Status = "deleted";
             return trans;
         }
     }

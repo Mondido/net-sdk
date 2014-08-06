@@ -61,6 +61,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Stored_CardsController.cs" />
     <Compile Include="JsonNetFormatter.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TransactionsController.cs" />
