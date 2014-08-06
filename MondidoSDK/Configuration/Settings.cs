@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace MondidoSDK.Configuration
+namespace Mondido.Configuration
 {
     public class Settings
     {

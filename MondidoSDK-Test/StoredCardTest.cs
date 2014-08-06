@@ -12,9 +12,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MondidoSDK.Api;
-using MondidoSDK.Configuration;
-using MondidoSDK.Utils;
+using Mondido.CreditCard;
+using Mondido.Utils;
 
 namespace MondidoSDK_Test
 {
@@ -65,7 +64,7 @@ namespace MondidoSDK_Test
             postData.Add(new KeyValuePair<string, string>("locale", "en"));
             postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
-            var res = MondidoSDK.Api.StoredCard.Create(postData);
+            var res = StoredCard.Create(postData);
             Assert.IsTrue(res.CardHolder == refdata);
         }
 

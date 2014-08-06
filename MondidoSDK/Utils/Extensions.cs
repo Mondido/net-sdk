@@ -1,19 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Web.Script.Serialization;
-using MondidoSDK.Configuration;
-using MondidoSDK.Utils.Security;
+using Mondido.Configuration;
+using Mondido.Utils.Security;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Parameters;
-using Org.BouncyCastle.OpenSsl;
-using Org.BouncyCastle.Security;
 
-namespace MondidoSDK.Utils
+namespace Mondido.Utils
 {
     public static class Extensions
     {

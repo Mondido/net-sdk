@@ -61,6 +61,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="WebhookController.cs" />
     <Compile Include="RefundTest.cs" />
     <Compile Include="RefundsController.cs" />
     <Compile Include="Stored_CardsController.cs" />
@@ -70,18 +71,18 @@
     <Compile Include="TransactionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StoredCardTest.cs" />
+    <Compile Include="WebhookTest.cs" />
     <Compile Include="WebApiKeyHandler.cs" />
     <Compile Include="WebApiOutputCacheAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MondidoSDK\MondidoSDK.csproj">
+    <ProjectReference Include="..\MondidoSDK\Mondido.csproj">
       <Project>{b2a4458a-001c-43c9-8b9e-db536f12042a}</Project>
-      <Name>MondidoSDK</Name>
+      <Name>Mondido</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="cert.pem" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

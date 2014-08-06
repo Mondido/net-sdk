@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using MondidoSDK.Api;
+using Mondido.CreditCard;
 using Newtonsoft.Json.Linq;
 
 namespace MondidoSDK_Test
 {
     public class Stored_CardsController : ApiController
     {
-        public MondidoSDK.Api.StoredCard TestCard
+        public StoredCard TestCard
         {
             get
             {

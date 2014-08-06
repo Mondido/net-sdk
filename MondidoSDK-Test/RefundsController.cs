@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using MondidoSDK.Api;
+using Mondido.CreditCard;
 using Newtonsoft.Json.Linq;
 
 namespace MondidoSDK_Test

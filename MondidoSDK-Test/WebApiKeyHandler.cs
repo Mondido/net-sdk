@@ -15,11 +15,7 @@ namespace MondidoSDK_Test
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
             CancellationToken cancellationToken)
         {
-
-            //chech for basic auth
-            string apikey = HttpUtility.ParseQueryString(request.RequestUri.Query).Get("apikey");
             bool isAuth = true;
-
             if (!isAuth)
             {
                 return SendError("You can't use the API without the key.", HttpStatusCode.Forbidden);

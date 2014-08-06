@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MondidoSDK.Api;
-using MondidoSDK.Configuration;
-using MondidoSDK.Utils;
+using Mondido.Configuration;
+using Mondido.CreditCard;
+using Mondido.Utils;
 
 namespace MondidoSDK_Test
 {
@@ -35,7 +35,7 @@ namespace MondidoSDK_Test
         [TestMethod]
         public void TestList()
         {
-            var transactions = MondidoSDK.Api.Transaction.List(3,0);
+            var transactions = Transaction.List(3,0);
             Assert.IsTrue(3 == transactions.Count());
         }
 
@@ -43,7 +43,7 @@ namespace MondidoSDK_Test
         public void TestCreate()
         {
             var payment_ref = DateTimeOffset.Now.Ticks.ToString();
-            List<KeyValuePair<string, string>> postData = new List<KeyValuePair<string, string>>();
+            var postData = new List<KeyValuePair<string, string>>();
             var encryptedCard = "4111111111111111".RSAEncrypt();
 
             postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
@@ -59,7 +59,7 @@ namespace MondidoSDK_Test
             postData.Add(new KeyValuePair<string, string>("hash", (Settings.ApiUsername + payment_ref + "10.00" + "sek" + Settings.ApiSecret).ToMD5()));
             postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
-            var transaction = MondidoSDK.Api.Transaction.Create(postData);
+            var transaction = Transaction.Create(postData);
             Assert.IsTrue(transaction.PaymentRef == payment_ref);
         }
 

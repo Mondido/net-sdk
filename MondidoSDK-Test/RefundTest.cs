@@ -12,9 +12,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MondidoSDK.Api;
-using MondidoSDK.Configuration;
-using MondidoSDK.Utils;
+using Mondido.CreditCard;
 
 namespace MondidoSDK_Test
 {
@@ -51,7 +49,7 @@ namespace MondidoSDK_Test
             postData.Add(new KeyValuePair<string, string>("reason", refdata));
             postData.Add(new KeyValuePair<string, string>("locale", "en"));
 
-            var res = MondidoSDK.Api.Refund.Create(postData);
+            var res = Refund.Create(postData);
             Assert.IsTrue(res.Reason == refdata);
         }
 

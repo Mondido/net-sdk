@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http;
+using System.Web;
+using Mondido.CreditCard;
+using Mondido.Utils;
+using Newtonsoft.Json.Linq;
 
-namespace MondidoSDK.Request
+namespace Mondido.Request
 {
-    class Webhook
+    public class Webhook
     {
+        public static Transaction GetWebhook(HttpRequestMessage request)
+        {
+            var transaction = request.Content.ReadAsStringAsync().Result.FromJson<Transaction>();
+            return transaction;
+        }
     }
 }
