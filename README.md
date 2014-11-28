@@ -58,18 +58,18 @@ The merchant account specific information is loaded from a app/web.config file o
 They are found in the Admin portal:
 https://www.mondido.com/en/settings 
 
-ApiBaseUrl : https://api.mondido.com/v1
-ApiUsername : the merchant id found at: https://www.mondido.com/en/settings after you have logged in and created a merchant account
-ApiPassword : the merchant password that you have set at: https://www.mondido.com/en/settings after you have logged in and created a merchant account
-ApiSecret :  the merchant secret that you can find at: https://www.mondido.com/en/settings after you have logged in and created a merchant account
-RSAKey : the merchant RSA public key that you can find at: https://www.mondido.com/en/settings after you have logged in and created a merchant account
+ApiBaseUrl : https://api.mondido.com/v1   
+ApiUsername : the merchant id found at: https://www.mondido.com/en/settings after you have logged in and created a merchant account   
+ApiPassword : the merchant password that you have set at: https://www.mondido.com/en/settings after you have logged in and created a merchant account   
+ApiSecret :  the merchant secret that you can find at: https://www.mondido.com/en/settings after you have logged in and created a merchant account   
+RSAKey : the merchant RSA public key that you can find at: https://www.mondido.com/en/settings after you have logged in and created a merchant account   
 
 
 DEPENDENCIES:
 ---
 This SDK require:
-Newtonsoft JSON.NET (https://www.nuget.org/packages/Newtonsoft.Json/)
-Bouncy Castle (https://www.nuget.org/packages/BouncyCastle/)
+Newtonsoft JSON.NET (https://www.nuget.org/packages/Newtonsoft.Json/)   
+Bouncy Castle (https://www.nuget.org/packages/BouncyCastle/)   
 
 
 Do not hesitate to contact support@mondido.com for any questions!
