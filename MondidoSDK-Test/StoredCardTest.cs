@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -37,6 +38,8 @@ namespace MondidoSDK_Test
         public void TestGet()
         {
             var res = StoredCard.Get(1);
+
+            Trace.Write(res.ToJson());
             Assert.AreEqual(1, res.Id);
         }
 
@@ -44,6 +47,8 @@ namespace MondidoSDK_Test
         public void TestList()
         {
             var res = StoredCard.List(3,0);
+
+            Trace.Write(res.ToJson());
             Assert.AreEqual(3, res.Count());
         }
 
@@ -65,6 +70,8 @@ namespace MondidoSDK_Test
             postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
             var res = StoredCard.Create(postData);
+
+            Trace.Write(res.ToJson());
             Assert.IsTrue(res.CardHolder == refdata);
         }
 
@@ -72,6 +79,9 @@ namespace MondidoSDK_Test
         public void TestDelete()
         {
             var res = StoredCard.Delete(1);
+
+            Trace.Write(res.ToJson());
+
             Assert.AreEqual("deleted", res.Status);
         }
 

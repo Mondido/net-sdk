@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -36,6 +37,8 @@ namespace MondidoSDK_Test
         public void TestGet()
         {
             var res = Refund.Get(1);
+
+            Trace.Write(res.ToJson());
             Assert.AreEqual(1, res.Id);
         }
 
@@ -50,16 +53,11 @@ namespace MondidoSDK_Test
             postData.Add(new KeyValuePair<string, string>("locale", "en"));
 
             var res = Refund.Create(postData);
+
+            Trace.Write(res.ToJson());
+
             Assert.IsTrue(res.Reason == refdata);
         }
-
-        [TestMethod]
-        public void TestDelete()
-        {
-            var res = StoredCard.Delete(1);
-            Assert.AreEqual("deleted", res.Status);
-        }
-
 
         [ClassCleanup()]
         public static void MyClassCleanup()

@@ -31,7 +31,9 @@ namespace MondidoSDK_Test
                     TemplateId = 1,
                     PaymentRef = "123",
                     Status = "complete",
-                    Test = true
+                    Test = true,
+                    Href = "https://pay.mondido.com/v1/form/Wcxn78Ow5EuxsZS4rIdx5w"
+                    
                 };
             }
         }

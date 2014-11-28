@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Mondido.Configuration;
@@ -14,11 +16,16 @@ namespace Mondido.Utils
             return JsonConvert.DeserializeObject<T>(s);
         }
 
+        public static IEnumerable ToJson(this IEnumerable s)
+        {
+            return JsonConvert.SerializeObject(s);
+        }
+
         public static string ToMD5(this string s)
         {
             // step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(s);
+            byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(s);
             byte[] hash = md5.ComputeHash(inputBytes);
 
             // step 2, convert byte array to hex string

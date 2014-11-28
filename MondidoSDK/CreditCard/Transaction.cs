@@ -89,6 +89,8 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "encrypted")]
         public string Encrypted { get; set; }
 
+        [JsonProperty(PropertyName = "href")]
+        public string Href { get; set; }
 
         public static Transaction Create(List<KeyValuePair<string, string>> data)
         {
