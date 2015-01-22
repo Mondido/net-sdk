@@ -41,6 +41,9 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "payment_ref")]
         public string PaymentRef { get; set; }
 
+        [JsonProperty(PropertyName = "customer_ref")]
+        public string CustomerRef { get; set; }
+
         [JsonProperty(PropertyName = "test")]
         public bool Test { get; set; }
 
@@ -77,7 +80,7 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "customer")]
         public dynamic Customer { get; set; }
 
-        [JsonProperty(PropertyName = "transcation_type")]
+        [JsonProperty(PropertyName = "transcation_type")] // typo
         public string TransactionType { get; set; }
 
         [JsonProperty(PropertyName = "subscription")]
