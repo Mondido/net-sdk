@@ -30,6 +30,7 @@ namespace MondidoSDK_Test
                     Currency = "eur",
                     TemplateId = 1,
                     PaymentRef = "123",
+                    CustomerRef = "456",
                     Status = "complete",
                     Test = true,
                     Href = "https://pay.mondido.com/v1/form/Wcxn78Ow5EuxsZS4rIdx5w"
