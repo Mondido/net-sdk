@@ -8,8 +8,8 @@ PCI compliance for merchants is required for any business accepting cardholder d
      
 We strongly recommend NOT sending card numbers unencrypted to and from your server.
 Let Mondido capture this sensitive information using one of our hosted window or .js solutions to avoid PCI compliance issues.
-https://www.mondido.com/documentation/hosted
-https://www.mondido.com/documentation/mondidojs
+https://doc.mondido.com/hosted
+https://doc.mondido.com/mondidojs
 
 
 CONFIGURATION:

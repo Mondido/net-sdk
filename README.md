@@ -2,7 +2,7 @@
 =======
 
 Version 1.1   
-.NET version 4.5, Visual Studio 2012
+.NET version 4.5
 
 The SDK provides developers with a easy-to-use library to make payments in their .NET Server or Windows Phone application. 
 Open the included unit tests and see how it works.
@@ -22,7 +22,8 @@ var customer_ref = "Customer Reference Test";
 var currency = "sek";
 var test = "true";
 var postData = new List<KeyValuePair<string, string>>();
-var encryptedCard = "4111111111111111".RSAEncrypt();//DO NOT SEND CARD NUMBERS IN CLEAR TEXT
+var encryptedCard = "4111111111111111".RSAEncrypt();//DO NOT SEND CARD NUMBERS IN CLEAR TEXT. 
+//You should set encryptedCard to a tokenized card number and use it as recurring.
 
 postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
 postData.Add(new KeyValuePair<string, string>("payment_ref", payment_ref));
