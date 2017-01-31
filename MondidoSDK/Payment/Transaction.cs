@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Mondido.Utils;
 using Newtonsoft.Json;
+using System.Text;
 
-namespace Mondido.CreditCard
+namespace Mondido.Payment
 {
     [DataContract]
     public class Transaction : BaseModel
@@ -80,7 +81,7 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "customer")]
         public dynamic Customer { get; set; }
 
-        [JsonProperty(PropertyName = "transcation_type")] // typo
+        [JsonProperty(PropertyName = "transaction_type")] 
         public string TransactionType { get; set; }
 
         [JsonProperty(PropertyName = "subscription")]
@@ -95,9 +96,27 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "href")]
         public string Href { get; set; }
 
+        [JsonProperty(PropertyName = "authorize")]
+        public string Authorize { get; set; }
+
+        [JsonProperty(PropertyName = "items")]
+        public string Items { get; set; }
+
+
         public static Transaction Create(List<KeyValuePair<string, string>> data)
         {
             return HttpPost("/transactions",data).Result.FromJson<Transaction>();
+        }
+
+        public static Transaction Capture(int id, string amount)
+        {
+            var data = new List<KeyValuePair<string, string>>();
+            data.Add(new KeyValuePair<string, string>("amount", amount));
+            return HttpPut(string.Format("/transactions/{0}/capture", id),data).Result.FromJson<Transaction>();
+        }
+        public static Transaction Update(int id, List<KeyValuePair<string, string>> data)
+        {
+            return HttpPut(string.Format("/transactions/{0}", id), data).Result.FromJson<Transaction>();
         }
 
         public static Transaction Get(int id)
@@ -105,9 +124,11 @@ namespace Mondido.CreditCard
             return HttpGet("/transactions/" + id).Result.FromJson<Transaction>();
         }
 
-        public static IEnumerable<Transaction> List(int take, int skip)
+        public static IEnumerable<Transaction> List(int take, int skip, List<KeyValuePair<string,string>> filters=null, string sortBy="id:desc")
         {
-            return HttpGet(string.Format("/transactions?limit={0}&offset={1}",take,skip)).Result.FromJson<IEnumerable<Transaction>>();
+            string parsedFilters = ParseFilters(filters);
+            return HttpGet(string.Format("/transactions?limit={0}&offset={1}{3}&order_by={2}",take,skip,sortBy,parsedFilters)).Result.FromJson<IEnumerable<Transaction>>();
         }
+
     }
 }

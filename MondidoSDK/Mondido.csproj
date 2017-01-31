@@ -50,10 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CreditCard\BaseModel.cs" />
-    <Compile Include="CreditCard\Refund.cs" />
-    <Compile Include="CreditCard\StoredCard.cs" />
-    <Compile Include="CreditCard\Transaction.cs" />
+    <Compile Include="Payment\BaseModel.cs" />
+    <Compile Include="Payment\Customer.cs" />
+    <Compile Include="Payment\Plan.cs" />
+    <Compile Include="Payment\Refund.cs" />
+    <Compile Include="Payment\StoredCard.cs" />
+    <Compile Include="Payment\Subscription.cs" />
+    <Compile Include="Payment\Transaction.cs" />
     <Compile Include="Configuration\MessageHandlerProvider.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

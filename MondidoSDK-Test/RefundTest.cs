@@ -1,31 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.Security.Policy;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.Filters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mondido.CreditCard;
+using Mondido.Payment;
 
 namespace MondidoSDK_Test
 {
     [TestClass]
     public class RefundTest : TestBase
     {
-
-        [ClassInitialize()]
-        public static void MyClassInitialize(TestContext testContext) 
-        {
-           TestBase.MyClassInitialize(testContext);
-        }
 
         [TestInitialize()]
         public void Init()

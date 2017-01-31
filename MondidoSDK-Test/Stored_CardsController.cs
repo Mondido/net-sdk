@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Http;
-using Mondido.CreditCard;
+using Mondido.Payment;
 using Newtonsoft.Json.Linq;
+using System.Web.Http;
+using System.Net.Http;
 
 namespace MondidoSDK_Test
 {

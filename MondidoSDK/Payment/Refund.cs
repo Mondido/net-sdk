@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mondido.Utils;
 using Newtonsoft.Json;
 
-namespace Mondido.CreditCard
+namespace Mondido.Payment
 {
     public class Refund : BaseModel
     {

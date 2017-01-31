@@ -7,3 +7,12 @@ C:\work\mondido\MondidoSDK\MondidoSDK\bin\Debug\Newtonsoft.Json.xml
 C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\Mondido.dll
 C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\Mondido.pdb
 C:\work\mondido\MondidoSDK\MondidoSDK\obj\Debug\Mondido.csprojResolveAssemblyReference.cache
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\Mondido.dll
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\Mondido.pdb
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\BouncyCastle.Crypto.dll
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\Newtonsoft.Json.dll
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\BouncyCastle.Crypto.pdb
+Y:\Documents\GitHub\net-sdk\MondidoSDK\bin\Debug\Newtonsoft.Json.xml
+Y:\Documents\GitHub\net-sdk\MondidoSDK\obj\Debug\Mondido.dll
+Y:\Documents\GitHub\net-sdk\MondidoSDK\obj\Debug\Mondido.pdb
+Y:\Documents\GitHub\net-sdk\MondidoSDK\obj\Debug\Mondido.csprojResolveAssemblyReference.cache

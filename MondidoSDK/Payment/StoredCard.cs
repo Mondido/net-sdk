@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mondido.Utils;
 using Newtonsoft.Json;
 
-namespace Mondido.CreditCard
+namespace Mondido.Payment
 {
     public class StoredCard : BaseModel
     {
@@ -22,8 +22,6 @@ namespace Mondido.CreditCard
         [JsonProperty(PropertyName = "currency")]
         public string Currency { get; set; }
 
-
-        
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
@@ -67,15 +65,20 @@ namespace Mondido.CreditCard
             return HttpGet("/stored_cards/" + id).Result.FromJson<StoredCard>();
         }
 
-        public static IEnumerable<StoredCard> List(int take, int skip)
+        public static IEnumerable<StoredCard> List(int take, int skip, List<KeyValuePair<string, string>> filters = null, string sortBy = "id:desc")
         {
-            return HttpGet(string.Format("/stored_cards?limit={0}&offset={1}", take, skip)).Result.FromJson<IEnumerable<StoredCard>>();
+            string parsedFilters = ParseFilters(filters);
+            return HttpGet(string.Format("/stored_cards?limit={0}&offset={1}{3}&order_by={2}", take, skip, sortBy, parsedFilters)).Result.FromJson<IEnumerable<StoredCard>>();
         }
 
         public static StoredCard Delete(int id)
         {
-            return HttpDelete(string.Format("/stored_cards/"+id)).Result.FromJson<StoredCard>();
+            return HttpDelete(string.Format("/stored_cards/" + id)).Result.FromJson<StoredCard>();
         }
 
+        public static StoredCard Update(int id, List<KeyValuePair<string, string>> data)
+        {
+            return HttpPut(string.Format("/stored_cards/" + id),data).Result.FromJson<StoredCard>();
+        }
     }
 }

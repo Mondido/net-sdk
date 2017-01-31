@@ -1,20 +1,52 @@
 .NET SDK for Mondido Payments
 =======
 
-Version 1.1   
+Version 2.0   
 .NET version 4.5
 
-The SDK provides developers with a easy-to-use library to make payments in their .NET Server or Windows Phone application. 
+The SDK provides developers with a easy-to-use library to make payments in their .NET Server or Windows Phone / Xamarin application. 
 Open the included unit tests and see how it works.
 
+CHANGELOG
+---
 
-Example:
+2017-01-31
+- Added support for items, metadata, auth and capture for Transaction
+- Added Subscriptions, Plans, Customers
+
+Example, preparing a payment for Hosted Window:
+``` csharp
+
+//prepare a payment
+var payment_ref = DateTimeOffset.Now.Ticks.ToString();
+var customer_ref = "MyCustomer123";
+var currency = "eur";
+var test = "true";
+var postData = new List<KeyValuePair<string, string>>();
+var process = "false"
+
+postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
+postData.Add(new KeyValuePair<string, string>("payment_ref", payment_ref));
+postData.Add(new KeyValuePair<string, string>("customer_ref", customer_ref));
+postData.Add(new KeyValuePair<string, string>("test", test));
+postData.Add(new KeyValuePair<string, string>("currency", currency));
+postData.Add(new KeyValuePair<string, string>("locale", "en"));
+postData.Add(new KeyValuePair<string, string>("hash", (Settings.ApiUsername + payment_ref + customer_ref + "10.00" + currency + (test.Equals("true") ? "test" : "" ) + Settings.ApiSecret).ToMD5()));
+postData.Add(new KeyValuePair<string, string>("process", process)); // We don't want to process, but only get the URL for later card/invoice/other collecting.
+
+var newTransaction = Mondido.Payment.Transaction.Create(postData);
+var redirect_the_customer_to_this_url = newTransaction.Href;
+//it will look like this: https://pay.mondido.com/v1/form/Wcxn78Ow5EkxsAS4rIdx5w
+
+```
+
+Example card payment:
 ``` csharp
 //get one transaction   
-var transaction = Mondido.CreditCard.Transaction.Get(1);
+var transaction = Mondido.Payment.Transaction.Get(1);
 
 //get three, from the top   
-var transactions = Mondido.CreditCard.Transaction.List(3,0);
+var transactions = Mondido.Payment.Transaction.List(3,0);
 
 //create a payment using encrypted card number
 var payment_ref = DateTimeOffset.Now.Ticks.ToString();
@@ -22,7 +54,7 @@ var customer_ref = "Customer Reference Test";
 var currency = "sek";
 var test = "true";
 var postData = new List<KeyValuePair<string, string>>();
-var encryptedCard = "4111111111111111".RSAEncrypt();//DO NOT SEND CARD NUMBERS IN CLEAR TEXT. 
+var encryptedCard = "4111111111111111".RSAEncrypt();//DO NOT COLLECT CARD NUMBERS OR SEND CARD NUMBERS IN CLEAR TEXT. 
 //You should set encryptedCard to a tokenized card number and use it as recurring.
 
 postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
@@ -39,7 +71,7 @@ postData.Add(new KeyValuePair<string, string>("locale", "en"));
 postData.Add(new KeyValuePair<string, string>("hash", (Settings.ApiUsername + payment_ref + customer_ref + "10.00" + currency + (test.Equals("true") ? "test" : "" ) + Settings.ApiSecret).ToMD5()));
 postData.Add(new KeyValuePair<string, string>("encrypted", "card_number"));
 
-var newTransaction = Mondido.CreditCard.Transaction.Create(postData);
+var newTransaction = Mondido.Payment.Transaction.Create(postData);
 ```
 
 Read more at https://mondido.com/documentation
@@ -53,6 +85,12 @@ We strongly recommend NOT sending card numbers unencrypted to and from your serv
 Let Mondido capture this sensitive information using one of our hosted window or .js solutions to avoid PCI compliance issues.   
 https://www.mondido.com/documentation/hosted   
 https://www.mondido.com/documentation/mondidojs   
+
+
+3D-SECURE:
+---
+Since many card transactions require 3D-Secure it is highly recommend that this SDK is implented to prepare payments and refunds, but collecting card data should be done in a Hosted Window environment so that 3D-Secure can be handled by Mondido.
+
 
 
 CONFIGURATION:

@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 using Mondido.Configuration;
 using Mondido.Exceptions;
 using Newtonsoft.Json;
+using System.Text;
 
-namespace Mondido.CreditCard
+namespace Mondido.Payment
 {
+    public enum HttpMethod
+    {
+        POST,
+        PUT
+    }
+
     [DataContract]
     public class BaseModel
     {
@@ -86,7 +93,7 @@ namespace Mondido.CreditCard
             return data;
         }
 
-        public static async Task<string> HttpPost(string url, List<KeyValuePair<string, string>> postData)
+        public static async Task<string> HttpPost(string url, List<KeyValuePair<string, string>> postData, HttpMethod method = HttpMethod.POST)
         {
             string data;
             using (var client = new HttpClient(GetHandler()))
@@ -94,7 +101,16 @@ namespace Mondido.CreditCard
                 client.BaseAddress = new Uri(ApiBaseUrl);
 
                 HttpContent content = new FormUrlEncodedContent(postData);
-                HttpResponseMessage response = await client.PostAsync(ApiBaseUrl + url,content);
+                HttpResponseMessage response = null;
+                if (method == HttpMethod.POST)
+                {
+                    response = await client.PostAsync(ApiBaseUrl + url, content);
+                }
+                if (method == HttpMethod.PUT)
+                {
+                    response = await client.PutAsync(ApiBaseUrl + url, content);
+                }
+
                 data = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
                 {
@@ -102,6 +118,11 @@ namespace Mondido.CreditCard
                 }
             }
             return data;
+        }
+
+        public static async Task<string> HttpPut(string url, List<KeyValuePair<string, string>> postData)
+        {
+            return await HttpPost(url, postData, HttpMethod.PUT);
         }
 
         public static HttpMessageHandler GetHandler()
@@ -119,7 +140,23 @@ namespace Mondido.CreditCard
         {
             return JsonConvert.SerializeObject(this);
         }
-      
-    
+
+        protected static string ParseFilters(List<KeyValuePair<string, string>> filters)
+        {
+            if (filters == null)
+            {
+                return string.Empty;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            filters.ForEach(delegate (KeyValuePair<string, string> kvp)
+            {
+                sb.Append(string.Format("&filter[{0}]={1}", kvp.Key, kvp.Value));
+            });
+
+            return sb.ToString();
+        }
+
+
     }
 }

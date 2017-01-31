@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
-using System.Web.Http;
-using Mondido.CreditCard;
+using Mondido.Payment;
+using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using System.Web.Http;
 
 namespace MondidoSDK_Test
 {
@@ -45,6 +43,32 @@ namespace MondidoSDK_Test
             transaction.Amount = obj.amount;
             transaction.PaymentRef = obj.payment_ref;
             transaction.CardCVV = obj.card_cvv;
+
+            if(obj.authorize == "true")
+            {
+                transaction.Authorize = "true";
+                transaction.Status = "authorized";
+            }
+
+            return transaction;
+        }
+
+        [Route("v1/transactions/{id}/capture")]
+        [ActionName("capture")]
+        [HttpPut]
+        public object Capture(int id)
+        {
+            dynamic obj = Request.Content.ReadAsAsync<JObject>().Result;
+            var transaction = TestTransaction;
+            transaction.Amount = obj.amount;
+            transaction.PaymentRef = obj.payment_ref;
+            transaction.CardCVV = obj.card_cvv;
+
+            if (obj.authorize == "true")
+            {
+                transaction.Authorize = "true";
+                transaction.Status = "authorized";
+            }
 
             return transaction;
         }
