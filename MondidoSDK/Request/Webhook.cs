@@ -1,8 +1,6 @@
 ﻿using System.Net.Http;
-using System.Web;
-using Mondido.CreditCard;
+using Mondido.Payment;
 using Mondido.Utils;
-using Newtonsoft.Json.Linq;
 
 namespace Mondido.Request
 {

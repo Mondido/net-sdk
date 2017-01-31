@@ -1,1 +1,7 @@
 MondidoSDK.sln.DotSettings.user
+packages/*
+MondidoSDK/obj/*
+MondidoSDK/bin/Debug/*
+MondidoSDK/obj/Debug/*
+MondidoSDK-Test/bin/Debug/*
+MondidoSDK-Test/obj/Debug/*

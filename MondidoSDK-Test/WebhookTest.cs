@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Security.Policy;
-using System.Web.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Mondido.Configuration;
-using Mondido.CreditCard;
-using Mondido.Utils;
+using Mondido.Payment;
+using System.Web.Http;
+using System.Net.Http.Formatting;
 
 namespace MondidoSDK_Test
 {
@@ -39,7 +34,7 @@ namespace MondidoSDK_Test
             postData.Amount = "10.00";
             postData.PaymentRef = payment_ref;
 
-            var request = TestBase.createRequest<Transaction>("/webhook", "application/json", HttpMethod.Post, postData,
+            var request = TestBase.createRequest<Transaction>("/webhook", "application/json", System.Net.Http.HttpMethod.Post, postData,
                 new JsonMediaTypeFormatter());
 
             using (HttpResponseMessage response = client.SendAsync(request).Result)

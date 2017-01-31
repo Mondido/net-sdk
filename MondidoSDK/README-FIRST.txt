@@ -12,6 +12,7 @@ https://doc.mondido.com/hosted
 https://doc.mondido.com/mondidojs
 
 
+
 CONFIGURATION:
 
 First sign up and create your merchant account at: https://www.mondido.com
@@ -34,4 +35,4 @@ Newtonsoft JSON.NET (https://www.nuget.org/packages/Newtonsoft.Json/)
 Bouncy Castle (https://www.nuget.org/packages/BouncyCastle/)
 
 
-Do not hesitate to contact support@mondido.com for any questions!
+Do not hesitate to contact help@mondido.com for any questions!
