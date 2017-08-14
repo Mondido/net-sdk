@@ -1,7 +1,8 @@
 .NET SDK for Mondido Payments
 =======
 
-Version 2.0   
+Version 2.1
+
 .NET version 4.5
 
 The SDK provides developers with a easy-to-use library to make payments in their .NET Server or Windows Phone / Xamarin application. 
@@ -9,6 +10,8 @@ Open the included unit tests and see how it works.
 
 CHANGELOG
 ---
+2017-08-14
+- Added RestSharp 
 
 2017-01-31
 - Added support for items, metadata, auth and capture for Transaction
