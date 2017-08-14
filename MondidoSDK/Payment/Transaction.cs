@@ -100,34 +100,34 @@ namespace Mondido.Payment
         public string Authorize { get; set; }
 
         [JsonProperty(PropertyName = "items")]
-        public string Items { get; set; }
+        public dynamic Items { get; set; }
 
 
         public static Transaction Create(List<KeyValuePair<string, string>> data)
         {
-            return HttpPost("/transactions",data).Result.FromJson<Transaction>();
+            return HttpPost("/transactions",data).FromJson<Transaction>();
         }
 
         public static Transaction Capture(int id, string amount)
         {
             var data = new List<KeyValuePair<string, string>>();
             data.Add(new KeyValuePair<string, string>("amount", amount));
-            return HttpPut(string.Format("/transactions/{0}/capture", id),data).Result.FromJson<Transaction>();
+            return HttpPut(string.Format("/transactions/{0}/capture", id),data).FromJson<Transaction>();
         }
         public static Transaction Update(int id, List<KeyValuePair<string, string>> data)
         {
-            return HttpPut(string.Format("/transactions/{0}", id), data).Result.FromJson<Transaction>();
+            return HttpPut(string.Format("/transactions/{0}", id), data).FromJson<Transaction>();
         }
 
         public static Transaction Get(int id)
         {
-            return HttpGet("/transactions/" + id).Result.FromJson<Transaction>();
+            return HttpGet("/transactions/" + id).FromJson<Transaction>();
         }
 
         public static IEnumerable<Transaction> List(int take, int skip, List<KeyValuePair<string,string>> filters=null, string sortBy="id:desc")
         {
             string parsedFilters = ParseFilters(filters);
-            return HttpGet(string.Format("/transactions?limit={0}&offset={1}{3}&order_by={2}",take,skip,sortBy,parsedFilters)).Result.FromJson<IEnumerable<Transaction>>();
+            return HttpGet(string.Format("/transactions?limit={0}&offset={1}{3}&order_by={2}",take,skip,sortBy,parsedFilters)).FromJson<IEnumerable<Transaction>>();
         }
 
     }

@@ -27,12 +27,12 @@ namespace Mondido.Payment
 
         public static Refund Create(List<KeyValuePair<string, string>> data)
         {
-            return HttpPost("/refunds", data).Result.FromJson<Refund>();
+            return HttpPost("/refunds", data).FromJson<Refund>();
         }
 
         public static Refund Get(int id)
         {
-            return HttpGet("/refunds/" + id).Result.FromJson<Refund>();
+            return HttpGet("/refunds/" + id).FromJson<Refund>();
         }
     }
 }

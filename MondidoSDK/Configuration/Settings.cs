@@ -8,7 +8,7 @@ namespace Mondido.Configuration
         {
             get
             {
-                return ConfigurationSettings.AppSettings["ApiBaseUrl"];
+                return ConfigurationManager.AppSettings["ApiBaseUrl"];
             }
         }
 
@@ -16,7 +16,7 @@ namespace Mondido.Configuration
         {
             get
             {
-                return ConfigurationSettings.AppSettings["ApiUsername"];
+                return ConfigurationManager.AppSettings["ApiUsername"];
             }
         }
 
@@ -24,7 +24,7 @@ namespace Mondido.Configuration
         {
             get
             {
-                return ConfigurationSettings.AppSettings["ApiPassword"];
+                return ConfigurationManager.AppSettings["ApiPassword"];
             }
         }
 
@@ -32,7 +32,7 @@ namespace Mondido.Configuration
         {
             get
             {
-                return ConfigurationSettings.AppSettings["ApiSecret"];
+                return ConfigurationManager.AppSettings["ApiSecret"];
             }
         }
 
@@ -40,7 +40,7 @@ namespace Mondido.Configuration
         {
             get
             {
-                return ConfigurationSettings.AppSettings["RSAKey"];
+                return ConfigurationManager.AppSettings["RSAKey"];
             }
         }    
 

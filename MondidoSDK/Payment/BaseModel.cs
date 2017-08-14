@@ -8,6 +8,8 @@ using Mondido.Configuration;
 using Mondido.Exceptions;
 using Newtonsoft.Json;
 using System.Text;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace Mondido.Payment
 {
@@ -61,68 +63,56 @@ namespace Mondido.Payment
             }
         }
 
-        public static async Task<string> HttpGet(string url)
+        public static string HttpGet(string url)
         {
-            string data;
-            using (var client = new HttpClient(GetHandler()))
-            {
-                client.BaseAddress = new Uri(ApiBaseUrl);
-                HttpResponseMessage response = await client.GetAsync(ApiBaseUrl+url);
-                data = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new ApiException(data);
-                }
-            }
+            string data = "";
+            var client = new RestClient(ApiBaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(ApiUsername, ApiPassword);
+            var request = new RestRequest(url, Method.GET);
+            IRestResponse response = client.Execute(request);
+            data = response.Content;
             return data;
         }
 
-        public static async Task<string> HttpDelete(string url)
+        public static string HttpDelete(string url)
         {
-            string data;
-            using (var client = new HttpClient(GetHandler()))
-            {
-                client.BaseAddress = new Uri(ApiBaseUrl);
-                HttpResponseMessage response = await client.DeleteAsync(ApiBaseUrl + url);
-                data = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new ApiException(data);
-                }
-            }
+            string data = "";
+            var client = new RestClient(ApiBaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(ApiUsername, ApiPassword);
+            var request = new RestRequest(url, Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            data = response.Content;
             return data;
         }
 
-        public static async Task<string> HttpPost(string url, List<KeyValuePair<string, string>> postData, HttpMethod method = HttpMethod.POST)
+        public static string HttpPost(string url, List<KeyValuePair<string, string>> postData, HttpMethod method = HttpMethod.POST)
         {
-            string data;
-            using (var client = new HttpClient(GetHandler()))
+            string data = "";
+            var client = new RestClient(ApiBaseUrl);
+            client.Authenticator = new HttpBasicAuthenticator(ApiUsername, ApiPassword);
+            var meth = Method.POST;
+            if (method == HttpMethod.PUT)
             {
-                client.BaseAddress = new Uri(ApiBaseUrl);
-
-                HttpContent content = new FormUrlEncodedContent(postData);
-                HttpResponseMessage response = null;
-                if (method == HttpMethod.POST)
-                {
-                    response = await client.PostAsync(ApiBaseUrl + url, content);
-                }
-                if (method == HttpMethod.PUT)
-                {
-                    response = await client.PutAsync(ApiBaseUrl + url, content);
-                }
-
-                data = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new ApiException(data);
-                }
+                meth = Method.PUT;
             }
+            var request = new RestRequest(url, meth);
+            request = PropData(postData, request);
+            IRestResponse response = client.Execute(request);
+            data = response.Content; 
             return data;
         }
 
-        public static async Task<string> HttpPut(string url, List<KeyValuePair<string, string>> postData)
+        private static RestRequest PropData(List<KeyValuePair<string, string>> postData, RestRequest request)
         {
-            return await HttpPost(url, postData, HttpMethod.PUT);
+            foreach(var item in postData)
+            {
+                request.AddParameter(item.Key, item.Value);
+            }
+            return request;
+        }
+        public static string HttpPut(string url, List<KeyValuePair<string, string>> postData)
+        {
+            return  HttpPost(url, postData, HttpMethod.PUT);
         }
 
         public static HttpMessageHandler GetHandler()
