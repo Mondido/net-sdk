@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Mondido</id>
+    <version>2.1.1</version>
+    <title>MondidoSDK</title>
+    <authors>Mondido Payments AB</authors>
+    <owners>robertpohl</owners>
+    <projectUrl>https://github.com/Mondido/net-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Mondido Payments SDK for .net</description>
+    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>payments creditcard invoice paypal e-commerce</tags>
+    <dependencies>
+      <dependency id="BouncyCastle" version="1.7.0" />
+      <dependency id="Newtonsoft.Json" version="6.0.4" />
+      <dependency id="RestSharp" version="105.2.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="README-FIRST.txt" target="README-FIRST.txt" />
+  </files>
+</package>

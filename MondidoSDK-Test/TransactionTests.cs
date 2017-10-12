@@ -130,6 +130,8 @@ namespace MondidoSDK_Test
             var test = "true";
 
             postData.Add(new KeyValuePair<string, string>("amount", "10.00"));
+            postData.Add(new KeyValuePair<string, string>("success_url", "https://www.mondido.com"));
+            postData.Add(new KeyValuePair<string, string>("error_url", "https://www.mondido.com"));
             postData.Add(new KeyValuePair<string, string>("payment_ref", payment_ref));
             postData.Add(new KeyValuePair<string, string>("customer_ref", customer_ref));
             postData.Add(new KeyValuePair<string, string>("test", test));

@@ -13,6 +13,7 @@ using RestSharp.Authenticators;
 
 namespace Mondido.Payment
 {
+
     public enum HttpMethod
     {
         POST,
@@ -25,6 +26,9 @@ namespace Mondido.Payment
         private static string _apiBaseUrl = "";
         private static string _apiUsername = "";
         private static string _apiPassword = "";
+
+        [JsonProperty(PropertyName = "api_error")]
+        public string ApiError { get; set; }
 
         public static string ApiBaseUrl
         {
@@ -70,7 +74,7 @@ namespace Mondido.Payment
             client.Authenticator = new HttpBasicAuthenticator(ApiUsername, ApiPassword);
             var request = new RestRequest(url, Method.GET);
             IRestResponse response = client.Execute(request);
-            data = response.Content;
+            data = ParseResponse(response);
             return data;
         }
 
@@ -81,7 +85,7 @@ namespace Mondido.Payment
             client.Authenticator = new HttpBasicAuthenticator(ApiUsername, ApiPassword);
             var request = new RestRequest(url, Method.DELETE);
             IRestResponse response = client.Execute(request);
-            data = response.Content;
+            data = ParseResponse(response);
             return data;
         }
 
@@ -98,8 +102,36 @@ namespace Mondido.Payment
             var request = new RestRequest(url, meth);
             request = PropData(postData, request);
             IRestResponse response = client.Execute(request);
-            data = response.Content; 
+            data = ParseResponse(response); 
             return data;
+        }
+
+        private static string ErrorObj(List<String> arr)
+        {
+            return "{\"api_error\":\""+String.Join(" ",arr)+"\"}";
+        }
+
+        private static string ParseResponse(IRestResponse response)
+        {
+            foreach(var header in response.Headers)
+            {
+                if(header.Name == "Status")
+                {
+                    var headVal = header.Value.ToString().Split(' ');
+                    var code = int.Parse(headVal[0]);
+                    if(code < 200 || code > 299)
+                    {
+                        List<string> info = new List<string>(headVal);
+                        dynamic error = JsonConvert.DeserializeObject(response.Content);
+                        if (error.name != null)
+                        {
+                            info.Add(error.name.ToString());
+                        }
+                        return ErrorObj(info);
+                    }
+                }
+            }
+            return response.Content;
         }
 
         private static RestRequest PropData(List<KeyValuePair<string, string>> postData, RestRequest request)
