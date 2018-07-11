@@ -106,31 +106,43 @@ namespace Mondido.Payment
             return data;
         }
 
-        private static string ErrorObj(List<String> arr)
+        private static string ErrorObj(List<String> arr, dynamic returnedObject = null)
         {
-            return "{\"api_error\":\""+String.Join(" ",arr)+"\"}";
+            dynamic obj = JsonConvert.DeserializeObject("{\"api_error\":\"" + String.Join(" ", arr) + "\"}");
+            if(returnedObject != null)
+            {
+                foreach (var prop in returnedObject.Children())
+                {
+                    obj[prop.Name] = prop.Value;
+                }
+
+            }
+
+            return JsonConvert.SerializeObject(obj);
         }
 
         private static string ParseResponse(IRestResponse response)
         {
-            foreach(var header in response.Headers)
+
+            HttpStatusCode statusCode = response.StatusCode;
+            int numericStatusCode = (int)statusCode;
+            if (numericStatusCode < 200 || numericStatusCode > 299)
             {
-                if(header.Name == "Status")
+                List<string> info = new List<string>();
+                dynamic error = JsonConvert.DeserializeObject(response.Content);
+                dynamic obj = null;
+                if (error != null && error.name != null)
                 {
-                    var headVal = header.Value.ToString().Split(' ');
-                    var code = int.Parse(headVal[0]);
-                    if(code < 200 || code > 299)
+                    info.Add(error.name.ToString());
+                    // if object is returned
+                    if(error["object"].transaction != null)
                     {
-                        List<string> info = new List<string>(headVal);
-                        dynamic error = JsonConvert.DeserializeObject(response.Content);
-                        if (error.name != null)
-                        {
-                            info.Add(error.name.ToString());
-                        }
-                        return ErrorObj(info);
+                        obj = error["object"].transaction;
                     }
                 }
+                return ErrorObj(info, obj);
             }
+
             return response.Content;
         }
 

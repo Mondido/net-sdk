@@ -1,6 +1,10 @@
 .NET SDK for Mondido Payments
 =======
 
+Version 2.3
+
+Parsing of returned object in error case
+
 Version 2.2
 
 Updated error handling, that adds a property 'ApiError' which contain any error messages or HTTP codes.
