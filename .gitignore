@@ -5,3 +5,11 @@ MondidoSDK/bin/Debug/*
 MondidoSDK/obj/Debug/*
 MondidoSDK-Test/bin/Debug/*
 MondidoSDK-Test/obj/Debug/*
+/.vs/MondidoSDK/v15/sqlite3/storage.ide
+/.vs/MondidoSDK/v15/.suo
+/MondidoSDK/bin/Release
+/MondidoSDK/Mondido.2.1.1.nupkg
+/MondidoSDK/Mondido.2.0.1.nupkg
+/MondidoSDK/Mondido.2.0.1-test.nupkg
+/MondidoSDK-Test/bin/Release
+/MondidoSDK-Test/obj/Release
