@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Mondido</id>
+    <version>2.0.3-test</version>
+    <title>MondidoSDK</title>
+    <authors>Mondido Payments AB</authors>
+    <owners>robertpohl</owners>
+    <projectUrl>https://github.com/Mondido/net-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Mondido Payments Library</description>
+    <releaseNotes>Fixed broken package</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Payments e-commerce creditcard invoice</tags>
+  </metadata>
+</package>
