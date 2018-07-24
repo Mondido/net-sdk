@@ -13,3 +13,12 @@ MondidoSDK-Test/obj/Debug/*
 /MondidoSDK/Mondido.2.0.1-test.nupkg
 /MondidoSDK-Test/bin/Release
 /MondidoSDK-Test/obj/Release
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015 cache/options directory
+.vs/
